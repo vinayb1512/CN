@@ -1,0 +1,247 @@
+1.Using Cisco Packet Tracer, create a topology and simulate sending a 
+simple PDU from source to destination using hub and switch as connecting 
+devices and demonstrate ping.
+Theory
+Cisco Packet Tracer is a network simulation and visualization tool developed by Cisco. It 
+allows users to create, configure, and test computer networks without using physical 
+networking devices.
+In this experiment, a network topology is created using PCs, a hub, and a switch. A Simple 
+PDU is used to simulate communication between a source and destination device. The ping
+command is used to verify connectivity between the devices.
+A Hub operates at the Physical Layer (Layer 1) and broadcasts the received data to all 
+connected devices.
+A Switch operates mainly at the Data Link Layer (Layer 2) and forwards frames to the 
+appropriate destination using MAC addresses.
+Ping uses the ICMP (Internet Control Message Protocol) to test whether two network 
+devices can reach each other.
+Simple PDU in Packet Tracer provides a simple way to test packet delivery between network 
+devices and observe whether the communication is successful.
+We can create different network topologies using Cisco Packet Tracer. Let us explore 
+different network diagrams starting with simple to bit complex.
+End devices
+Connections
+Network Devices Dept. of CSE, GAT 9 Computer Networks
+Network Topology
+1.This is a simple network topology with two networking devices connected via ethernet 
+cable.Use an Automatic connecting cable to connect the devices with others.
+Configure the PCs (hosts) and server with IPv4 address and Subnet Mask according to the IP 
+addressing table above.
+To assign an IP address in PC0, click on PC0.
+Then, go to desktop and IP configuration and there you will find IPv4 configuration.
+Fill IPv4 address and subnet mask.
+Similarly, repeat the same procedure with PC1 and server0 to configure them thoroughly. Dept. of CSE, GAT 10 Computer Networks
+Verify the connection by pinging the IP address of any host in PC0.
+Use the ping command to verify the connection.
+We will check if we are getting any replies or not.
+Here we get replies from a targeted node on both PCs. So, the connection is verified.
+This topology connected many networking devices via the Hub as an intermediate 
+device. We can connect many devices using the Hub depending upon of port available in 
+the Hub. Dept. of CSE, GAT 11 Computer Networks
+Use an Automatic connecting cable to connect the devices with others.
+Assign IP Addresses
+Click on PC0 > Desktop > IP Configuration:
+IP Address: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Click on PC1 > Desktop > IP Configuration:
+IP Address: 192.168.1.3
+Subnet Mask: 255.255.255.0
+Click on Server1 > Desktop > IP Configuration:
+IP Address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+Test the Network
+Open Command Prompt in PC0:
+Type ping 192.168.1.1 (to test connectivity to the Server).
+Type ping 192.168.1.3 (to test connectivity to PC1). Dept. of CSE, GAT 12 Computer Networks
+This topology connected many networking devices via the Hub as an intermediate 
+device. We can connect Hub To Hub as well in our network diagram.
+Assign IP Addresses
+Device IP Address Subnet Mask
+PC0 192.168.1.2 255.255.255.0
+PC1 192.168.1.3 255.255.255.0
+PC2 192.168.1.4 255.255.255.0
+PC3 192.168.1.5 255.255.255.0
+Server1 192.168.1.10 255.255.255.0
+Server2 192.168.1.11 255.255.255.0
+Test the Network
+Open Command Prompt in PC0:
+Type ping 192.168.1.1 (to test connectivity to the Server).
+Type ping 192.168.1.3 (to test connectivity to PC1). Dept. of CSE, GAT 13 Computer Networks
+This topology connected many networking devices using the Router.
+Add Devices
+Add 2 Servers:
+From End Devices, drag two Server-PT (Server0 and Server1).
+Add a Router:
+From Network Devices > Routers.
+Add Connections
+Use Copper Straight-Through cables:
+Connect Server0 → Router0 (Gig0/0)
+Connect Server1 → Router0 (Gig0/1)
+Configure IP Addresses
+Let’s assume the router interfaces and servers are on different subnets:
+Device Interface IP Address Subnet Mask
+Server0 FA/0 192.168.1.2 255.255.255.0
+Server1 FA/0 192.168.2.2 255.255.255.0
+Router0 G0/0 192.168.1.1 255.255.255.0
+Router0 G0/1 192.168.2.1 255.255.255.0
+Configure Server IP Settings
+Click each Server:
+Desktop > IP Configuration
+Server0:
+IP Address: 192.168.1.2
+Subnet Mask: 255.255.255.0 Dept. of CSE, GAT 14 Computer Networks
+Default Gateway: 192.168.1.1
+Server1:
+IP Address: 192.168.2.2 
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.2.1
+Configure Router Interfaces 
+Click Router0 > CLI tab: Router> enable
+Router# configure terminal
+Router(config)# interface gig0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+Router(config)# interface gig0/1
+Router(config-if)# ip address 192.168.2.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+Router(config)# exit
+Router#
+Test Connectivity
+From Server0:
+Open Command Prompt
+Type ping 192.168.2.2 → to test connection to Server1
+From Server1:
+Ping back to 192.168.1.2
+Both pings should succeed if everything is configured correctly.
+5.This topology connected many networking devices using Switches and Routers. Dept. of CSE, GAT 15 Computer Networks
+Assign IP Addresses
+At Server 0
+IP: 192.168.1.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.1
+At PC0
+IP: 192.168.1.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.1
+At Router0 (interface towards Switch0 - G0/0)
+IP: 192.168.1.1
+Subnet Mask: 255.255.255.0
+At Router0 (interface towards Server2 - G0/1):
+IP: 192.168.2.1
+Subnet Mask: 255.255.255.0
+At Server2
+IP: 192.168.2.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.2.1
+Configure Router Interfaces
+Click on Router0 → Go to CLI tab. Dept. of CSE, GAT 16 Computer Networks
+Enter the following commands:
+enable
+configure terminal
+interface gig0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+interface gig0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+exit
+end
+write
+Test Connectivity
+Click on PC0 → Desktop → Command Prompt.
+Type:
+ping 192.168.1.2 (ping Server0)
+ping 192.168.2.2 (ping Server2 via router)
+You should get replies if the configuration is correct. Dept. of CSE, GAT 17 Computer Networks
+
+
+
+
+2. Develop a C program to demonstrate Address Resolution 
+ Protocol (ARP).
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char ip[4][20] = {"192.168.1.1", "192.168.1.2",
+ "192.168.1.3", "192.168.1.4"};
+ char mac[4][20] = {"AA:BB:CC:DD:EE:01",
+ "AA:BB:CC:DD:EE:02",
+ "AA:BB:CC:DD:EE:03",
+ "AA:BB:CC:DD:EE:04"};
+ char searchIP[20];
+ int i, found = 0;
+ printf("Enter IP Address: ");
+ scanf("%s", searchIP);
+ for(i = 0; i < 4; i++)
+ {
+ if(strcmp(searchIP, ip[i]) == 0)
+ {
+ printf("\nARP Reply\n");
+ printf("IP Address : %s\n", ip[i]);
+ printf("MAC Address : %s\n", mac[i]);
+ found = 1;
+ break;
+ }
+ }
+ if(found == 0)
+ printf("\nARP: IP Address not found in ARP Table.\n"); Dept. of CSE, GAT 18 Computer Networks
+ return 0;
+}
+OUTPUT
+Enter IP Address: 192.168.1.2
+IP Address : 192.168.1.2
+MAC Address : AA:BB:CC:DD:EE:02
+Enter IP Address: 192.168.1.10
+ARP: IP Address not found in ARP Table. Dept. of CSE, GAT 19 Computer Networks
+
+
+
+
+
+3. Develop a C program to compute:
+ CRC at the transmitter. 
+ Syndrome at the receiver.
+#include <stdio.h>
+#include <string.h>
+void crc(char data[], char key[])
+{
+ int i, j, n = strlen(data), k = strlen(key);
+ for (i = 0; i <= n - k; i++)
+ {
+ if (data[i] == '1')
+ {
+ for (j = 0; j < k; j++)
+ data[i + j] = (data[i + j] == key[j]) ? '0' : '1';
+ }
+ }
+}
+int main()
+{
+ char data[50], key[20];
+ char temp[100], crc_value[20], codeword[100];
+ int n, k, i;
+ printf("Enter data: ");
+ scanf("%s", data);
+ printf("Enter generator: ");
+ scanf("%s", key); Dept. of CSE, GAT 20 Computer Networks
+ n = strlen(data);
+ k = strlen(key);
+ /* Transmitter */
+ strcpy(temp, data);
+ for (i = 0; i < k - 1; i++)
+ strcat(temp, "0");
+ crc(temp, key);
+ /* Store CRC */
+ strcpy(crc_value, temp + n);
+ printf("\nCRC = %s", crc_value);
+ /* Create codeword */
+ strcpy(codeword, data);
+ strcat(codeword, crc_value);
+ printf("\nCodeword = %s", codeword);
+ /* Receiver */
+ crc(codeword, key);
+ printf("\nSyndrome = %s", codeword + n);
+ return 0;
